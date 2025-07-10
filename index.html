@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Bestie</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    body {
+  margin: 0;
+  background: #f0c3c9 url('brday-bg.jpg') no-repeat center center;
+  background-size: cover;
+  font-family: 'Patrick Hand', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+    .main-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .side-stickers {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .side-stickers img {
+      width: 50px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .birthday-bubble {
+      background-color: #ffccdf;
+      border: 2px solid #f193cf;
+      border-radius: 20px;
+      padding: 15px 20px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      font-size: 20px;
+      line-height: 1.4;
+      z-index: 3;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: 2px solid #f193cf;
+      background-color: #f8c2e7;
+      color: #1b191d;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ee60c1;
+    }
+
+    .message-box {
+      margin-top: 30px;
+      display: none;
+      text-align: center;
+    }
+
+    .message-box img {
+      max-width: 150px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .sad {
+      animation: shake 0.6s infinite;
+      color: #141414;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+
+    .floating-heart, .floating-emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { bottom: -40px; opacity: 0; }
+      50% { opacity: 1; }
+      100% { bottom: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎀 Left-Side Vertical Images Beside Wish -->
+  <div class="main-section">
+    <div class="side-stickers">
+      <img src="tulip.jpg" alt="Tulip">
+      <img src="envelope.jpg" alt="Envelope">
+      <img src="bow.jpg" alt="Bow">
+    </div>
+
+    <div class="birthday-bubble">
+      ✨💗Happy Birthday Bestie 💗✨<br>
+      You are the best thing happened to me 💋🫂
+    </div>
+  </div>
+ <button onclick="document.getElementById('bgMusic').play()">🎵 Play Music</button>
+<audio id="bgMusic" loop>
+  <source src="birthdaymusic.mp3" type="audio/mpeg">
+</audio>
+  <!-- 🎁 Gift Choice Buttons -->
+  <div class="buttons">
+    <p>Do you want a gift?</p>
+    <button onclick="showYes()">Yes 💝</button>
+    <button onclick="showNo()">No 😢</button>
+  </div>
+
+  <!-- ❤️ YES Gift Message -->
+  <div id="yesMsg" class="message-box">
+    <img src="bestie.jpg" alt="Bestie">
+    <p>Main hoon tera gift aur tujhe kya chahiye 💝🎁✨</p>
+  </div>
+
+  <!-- 💔 NO Sad Message -->
+  <div id="noMsg" class="message-box sad">
+    <p>Ab tu mana karegi apni jaan ko 💔🥺</p>
+  </div>
+
+  <!-- 🎵 Background Music -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_3a83896a6b.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 🫧 Floating Hearts and Emojis -->
+  <script>
+    const emojiSet = ['💌','🎂',];
+    const colors = ['red', 'pink','skyblue', 'purple'];
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.innerText = '♡';
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.classList.add('floating-emoji');
+      emoji.innerText = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 8000);
+    }
+
+    setInterval(createHeart, 600);
+    setInterval(createEmoji, 1200);
+
+    function showYes() {
+      document.getElementById('yesMsg').style.display = 'block';
+      document.getElementById('noMsg').style.display = 'none';
+    }
+
+    function showNo() {
+      document.getElementById('noMsg').style.display = 'block';
+      document.getElementById('yesMsg').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
